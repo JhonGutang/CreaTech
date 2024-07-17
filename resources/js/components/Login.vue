@@ -1,5 +1,11 @@
 <template>
-  <h1>Test Login</h1>
+  <v-app class="">
+    <v-main>
+      <v-content>
+        <h1 class="border-xl">Hello</h1>
+      </v-content>
+    </v-main>
+  </v-app>
 </template>
 
 <script>
