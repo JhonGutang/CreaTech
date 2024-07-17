@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid cont">
+  <div class="container-fluid cont mt-5" id="offers">
     <div class="container h-100 border border-5 border-white rounded py-5 px-5 banner">
         <h3 class="mb-4 text-white">Limited Time Offer <i class="bi bi-fire"></i></h3>
         <div class="row h-100 px-5">

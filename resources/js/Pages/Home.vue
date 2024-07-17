@@ -11,13 +11,13 @@
 </template>
 
 <script>
-import Navbar from './components/Navbar.vue'
-import Hero from './components/Hero.vue'
-import Service from './components/Service.vue'
-import Banner from './components/Banner.vue'
-import AboutUs from './components/AboutUs.vue'
-import Footer from './components/Footer.vue'
-import FixedFooter from './components/FixedFooter.vue'
+import Navbar from '../components/Navbar.vue'
+import Hero from '../components/Hero.vue'
+import Service from '../components/Service.vue'
+import Banner from '../components/Banner.vue'
+import AboutUs from '../components/AboutUs.vue'
+import Footer from '../components/Footer.vue'
+import FixedFooter from '../components/FixedFooter.vue'
 
 
 export default {

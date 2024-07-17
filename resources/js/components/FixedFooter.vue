@@ -1,6 +1,5 @@
 <template>
   <div class="container-fluid position-fixed footer">
-    <div class="underline"></div>
     <div class="row flex-column pt-2">
       <div class="col text-center">
         <i class="me-3 text-white fs-5 bi bi-facebook"></i>
@@ -26,10 +25,4 @@
       cursor: pointer;
     }
 
-    .underline {
-      width: 100vw;
-      margin-left: -12px;
-      height: 5px;
-      background-color: #1d2331;
-    }
 </style>

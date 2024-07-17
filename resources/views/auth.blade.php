@@ -1,5 +1,7 @@
 @extends('layouts.layout')
 
+
+
 @section('content')
-    <div id="home"></div>
+    <div id="auth"></div>
 @endsection

@@ -23,7 +23,14 @@
                 <a class="nav-link text-white" href="#services">Service</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-white" href="#">Offers</a>
+                <a class="nav-link text-white" href="#offers">Offers</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" href="#aboutUs">About Us</a>
+              </li>
+              <li class="nav-item">
+                <link>
+                <a class="nav-link text-white" href="/login">Login</a>
               </li>
               
             </ul>
