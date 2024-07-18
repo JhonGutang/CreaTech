@@ -40,7 +40,7 @@
             <a class="nav-link text-white" href="#aboutUs">About Us</a>
           </li>
           <li class="nav-item">
-            <router-link to="/auth" class="text-white nav-link"> Login</router-link>
+            <Link :href="route('auth')" class="nav-link text-white">Login </Link>
           </li>
         </ul>
       </div>
@@ -48,6 +48,7 @@
   </nav>
 </template>
 <script>
+import {Link} from '@inertiajs/vue3'
 export default {
     props : ["name", "logoUrl"],
     name : "Navbar"

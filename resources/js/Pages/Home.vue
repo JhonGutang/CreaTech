@@ -1,4 +1,5 @@
 <template>
+  <Head :title="$page.component"/>
   <Navbar :name="title" :logUrl="logoImgUrl"/>
   <Hero :name="title" :imgUrl="heroImgUrl" />
   <Service :services="services" :title="title" />
@@ -16,9 +17,10 @@ import Banner from "../components/Banner.vue";
 import AboutUs from "../components/AboutUs.vue";
 import Footer from "../components/Footer.vue";
 import FixedFooter from "../components/FixedFooter.vue";
+import { Head } from '@inertiajs/vue3';
 
 export default {
-  components: { Navbar, Hero, Service, Banner, AboutUs, Footer, FixedFooter },
+  components: { Navbar, Hero, Service, Banner, AboutUs, Footer, FixedFooter},
   data() {
     return {
       title: "CreaTech",

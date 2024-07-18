@@ -1,17 +1,21 @@
 import './bootstrap';
-import { createApp } from 'vue';
+import { createApp, h } from 'vue'
+import { createInertiaApp, Head, Link } from '@inertiajs/vue3'
+import { ZiggyVue } from '../../vendor/tightenco/ziggy'
 
+createInertiaApp({
+    title: (title) => `Createch | ${title}`,
+  resolve: name => {
+    const pages = import.meta.glob('./Pages/**/*.vue', { eager: true })
+    return pages[`./Pages/${name}.vue`]
+  },
+  setup({ el, App, props, plugin }) {
+    createApp({ render: () => h(App, props) })
+      .use(plugin)
+      .use(ZiggyVue)
+      .component('Head', Head)
+      .component('Link', Link)
+      .mount(el)
+  },
+})
 
-import router from "./router/router";
-
-import App from "./App.vue"
-import Auth from "./Auth.vue"
-
-
-<<<<<<< HEAD
-createApp(Auth).use(router).use(vuetify).mount("#auth")
-createApp(App).use(router).mount("#app")
-=======
-createApp(App).use(router).mount("#app")
-createApp(Auth).use(router).mount("#auth")
->>>>>>> main
