@@ -1,21 +1,12 @@
 import './bootstrap';
 import { createApp } from 'vue';
 
-// Vuetify
-import 'vuetify/styles'
-import { createVuetify } from 'vuetify'
-import * as components from 'vuetify/components'
-import * as directives from 'vuetify/directives'
 
 import router from "./router/router";
 
 import App from "./App.vue"
 import Auth from "./Pages/Auth.vue"
 
-const vuetify = createVuetify({
-    components,
-    directives,
-})
 
 createApp(App).use(router).mount("#app")
-createApp(Auth).use(router).use(vuetify).mount("#auth")
+createApp(Auth).use(router).mount("#auth")
