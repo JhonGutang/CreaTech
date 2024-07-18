@@ -1,9 +1,9 @@
 <template>
   <v-app class="">
     <v-main>
-      <v-content>
-        <h1 class="border-xl">Hello</h1>
-      </v-content>
+      <v-container class="border-primary-thin">
+        <h1 class="border-primary-lg">Hello</h1>
+      </v-container>
     </v-main>
   </v-app>
 </template>
