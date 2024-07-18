@@ -10,12 +10,12 @@ import * as directives from 'vuetify/directives'
 import router from "./router/router";
 
 import App from "./App.vue"
-import Auth from "./Pages/Auth.vue"
+import Auth from "./Auth.vue"
 
 const vuetify = createVuetify({
     components,
     directives,
 })
 
-createApp(App).use(router).mount("#app")
 createApp(Auth).use(router).use(vuetify).mount("#auth")
+createApp(App).use(router).mount("#app")
