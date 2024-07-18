@@ -26,47 +26,50 @@
               <v-card class="overflow-auto px-2" height="300">
                 <!-- First Name -->
                 <v-text-field
+                  class="fields"
                   v-model="form.firstName"
                   label="First Name"
                   required
                 >
-                <small>{{form.errors.name}}</small>
-
               </v-text-field>
-                
+              <small class="customRequired">{{ form.errors.firstName }}</small>
+
                 <!-- Last Name -->
                 <v-text-field
-                v-model="form.lastName"
-                label="Last Name"
-                required
+                class="fields"
+                  v-model="form.lastName"
+                  label="Last Name"
+                  required
                 ></v-text-field>
-                <small>{{form.errors.name}}</small>
-                
+                <small class="customRequired">{{ form.errors.lastName }}</small>
+
                 <!-- Email -->
                 <v-text-field
-                v-model="form.email"
-                label="Email"
-                required
-                type="email"
+                class="fields"
+                  v-model="form.email"
+                  label="Email"
+                  required
+                  type="email"
                 ></v-text-field>
-                <small>{{form.errors.name}}</small>
-                
+                <small class="customRequired">{{ form.errors.email }}</small>
+
                 <!-- Password -->
                 <v-text-field
-                v-model="form.password"
-                label="Password"
-                required
-                type="password"
+                class="fields"
+                  v-model="form.password"
+                  label="Password"
+                  required
+                  type="password"
                 ></v-text-field>
-                <small>{{form.errors.name}}</small>
+                <small class="customRequired">{{ form.errors.password }}</small>
 
                 <v-text-field
-                v-model="form.password_confirmation"
-                label="Password"
-                required
-                type="password"
+                class="fields"
+                  v-model="form.password_confirmation"
+                  label="Confirm Password"
+                  required
+                  type="password"
                 ></v-text-field>
-                <small>{{form.errors.name}}</small>
               </v-card>
 
               <!-- Submit Button -->
@@ -84,9 +87,7 @@
                 <span>
                   <h6>
                     Already have an account?
-                    <a href="#" class="text-danger" @click="sendDataToParent"
-                      >Login Now</a
-                    >
+                  <button @click="sendDataToParent" class="text-danger">Login Now</button>
                   </h6></span
                 >
               </div>
@@ -99,27 +100,31 @@
 </template>
 
 <script setup>
-import { useForm } from '@inertiajs/vue3'
-    
-const form = useForm({
+import { useForm } from "@inertiajs/vue3";
+import { defineEmits } from 'vue';
 
+const emit = defineEmits(['child-event']);
+
+
+const form = useForm({
   firstName: null,
   lastName: null,
   email: null,
   password: null,
   password_confirmation: null,
-})
+});
 
 function sendDataToParent() {
-      const dataToSend = false;
-      this.$emit("child-event", dataToSend);
-    }
+  const dataToSend = false;
+  emit("child-event", dataToSend);
+}
 
-    function registerUser(){
-      form.post('/auth')
-    }
-
-  
+function registerUser() {
+  form.post("/auth", {
+    onError: () => form.reset("password", "password_confirmation")
+  });
+  console.log(form)
+}
 </script>
 
 <style scoped>
@@ -130,8 +135,7 @@ function sendDataToParent() {
   background-color: #dc3545;
 }
 .customBorder {
-  /* border: 8px solid #dc3545; */
-  border: 8px solid gray;
+  border: 8px solid #dc3545;
 }
 
 .imgContainer img {
@@ -149,5 +153,16 @@ function sendDataToParent() {
 
 .textFieldPaddingLeft {
   padding-left: 30px;
+}
+
+.customRequired {
+  position: relative;
+  top: -20px;
+  color: red;
+} 
+
+.fields:not(:first) {
+  position: relative;
+  margin-top: -20px;
 }
 </style>
