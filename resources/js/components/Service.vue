@@ -18,7 +18,7 @@
             <div class="col-1"></div>
             <div class="col">
                 <div class="row me-3">
-                    <div class="col border border-3 border-danger rounded me-2 py-5 px-4 bg-white" v-for="service in services" :key="service.id">
+                    <div class="col customBorder rounded me-2 py-5 px-4 bg-white" v-for="service in services" :key="service.id">
                         <h4 :id="service.id">
                             {{ service.name }}
                         </h4>
@@ -64,6 +64,10 @@ export default {
     .underlineTitle {
         
         width: 70px;
+    }
+
+    .customBorder {
+        border: 3px solid #DC3545;
     }
     
 </style>

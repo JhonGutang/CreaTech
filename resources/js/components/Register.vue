@@ -22,47 +22,74 @@
         <v-col class="customBorder">
           <v-sheet class="mx-auto pt-15" width="400" height="450">
             <div class="text-h4 mb-5">Register</div>
-            <v-form fast-fail @submit.prevent class="h-100">
-              <v-text-field
-                v-model="username"
-                :rules="usernameRules"
-                label="Username"
-                input-class="textFieldPaddingLeft"
-              ></v-text-field>
+            <v-form @submit.prevent="registerUser" class="h-100">
+              <v-card class="overflow-auto px-2" height="300">
+                <!-- First Name -->
+                <v-text-field
+                  v-model="form.firstName"
+                  label="First Name"
+                  required
+                >
+                <small>{{form.errors.name}}</small>
 
-              <v-text-field
-                v-model="password"
-                :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
-                :rules="[rules.required, rules.min]"
-                :type="showPassword ? 'text' : 'password'"
-                hint="At least 8 characters"
+              </v-text-field>
+                
+                <!-- Last Name -->
+                <v-text-field
+                v-model="form.lastName"
+                label="Last Name"
+                required
+                ></v-text-field>
+                <small>{{form.errors.name}}</small>
+                
+                <!-- Email -->
+                <v-text-field
+                v-model="form.email"
+                label="Email"
+                required
+                type="email"
+                ></v-text-field>
+                <small>{{form.errors.name}}</small>
+                
+                <!-- Password -->
+                <v-text-field
+                v-model="form.password"
                 label="Password"
-                name="password"
-                counter
-                @click:append="showPassword = !showPassword"
-                width="445"
-              ></v-text-field>
+                required
+                type="password"
+                ></v-text-field>
+                <small>{{form.errors.name}}</small>
 
-              <a
-                href=""
-                class="float-right text-decoration-none border mb-5 text-danger"
-                >Forgot Password</a
-              >
+                <v-text-field
+                v-model="form.password_confirmation"
+                label="Password"
+                required
+                type="password"
+                ></v-text-field>
+                <small>{{form.errors.name}}</small>
+              </v-card>
 
+              <!-- Submit Button -->
               <v-btn
-                class="my-2 text-light customButton"
+                class="mt-3 mb-2 text-light customButton"
                 height="50"
                 type="submit"
                 block
-                >Submit</v-btn
               >
+                Register
+              </v-btn>
 
-              <span class="text-center">
-                <h6>
-                  Don't have any Account?
-                  <button @click="sendDataToParent">Send Data to Parent</button>
-                </h6>
-              </span>
+              <!-- Login link -->
+              <div class="text-center">
+                <span>
+                  <h6>
+                    Already have an account?
+                    <a href="#" class="text-danger" @click="sendDataToParent"
+                      >Login Now</a
+                    >
+                  </h6></span
+                >
+              </div>
             </v-form>
           </v-sheet>
         </v-col>
@@ -71,27 +98,28 @@
   </v-app>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      username: "",
-      password: "",
-      usernameRules: [(v) => !!v || "First name is required"],
-      rules: {
-        required: (value) => !!value || "Required.",
-        min: (v) => (v && v.length >= 8) || "Min 8 characters",
-      },
-      showPassword: false,
-    };
-  },
-  methods: {
-    sendDataToParent() {
+<script setup>
+import { useForm } from '@inertiajs/vue3'
+    
+const form = useForm({
+
+  firstName: null,
+  lastName: null,
+  email: null,
+  password: null,
+  password_confirmation: null,
+})
+
+function sendDataToParent() {
       const dataToSend = false;
       this.$emit("child-event", dataToSend);
-    },
-  },
-};
+    }
+
+    function registerUser(){
+      form.post('/auth')
+    }
+
+  
 </script>
 
 <style scoped>

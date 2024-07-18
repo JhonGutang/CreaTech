@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid border border-none border-black rect">
+  <div class="container-fluid customBorderBlack rect">
     <div class="row h-100 mt-5">
       <div class="col text-white ms-5">
         <span class="d-flex">
@@ -61,5 +61,9 @@ img {
     height: 2px;
     margin-top: -3px;
     background-color: red;
+}
+
+.customBorderBlack {
+  border:  solid #1d2331;
 }
 </style>

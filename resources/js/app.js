@@ -1,7 +1,15 @@
 import './bootstrap';
 import { createApp, h } from 'vue'
 import { createInertiaApp, Head, Link } from '@inertiajs/vue3'
+
+
+// Ziggy
 import { ZiggyVue } from '../../vendor/tightenco/ziggy'
+
+// Vuetify
+import vuetify from './plugins/vuetify'
+import 'vuetify/styles'
+import '@mdi/font/css/materialdesignicons.css'
 
 createInertiaApp({
     title: (title) => `Createch | ${title}`,
@@ -13,6 +21,7 @@ createInertiaApp({
     createApp({ render: () => h(App, props) })
       .use(plugin)
       .use(ZiggyVue)
+      .use(vuetify)
       .component('Head', Head)
       .component('Link', Link)
       .mount(el)

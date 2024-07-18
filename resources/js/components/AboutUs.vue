@@ -4,7 +4,7 @@
     <div class="row">
       <div class="col pt-5">
         <div
-          class="container border border-4 rounded border-danger ms-4 aboutCont py-5 px-5"
+          class="container customBorderDanger ms-4 aboutCont py-5 px-5"
         >
           <h4>About Us</h4>
           <div class="underline mb-3"></div>
@@ -60,5 +60,9 @@ export default {
 
 img {
     margin-top: 60px;
+}
+
+.customBorderDanger {
+  border: 3px solid #DC3545;
 }
 </style>

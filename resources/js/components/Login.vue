@@ -37,15 +37,14 @@
                 :type="showPassword ? 'text' : 'password'"
                 hint="At least 8 characters"
                 label="Password"
-                name="password"
+                name="testPassword"
                 counter
                 @click:append="showPassword = !showPassword"
-                width="445"
               ></v-text-field>
 
               <a
                 href=""
-                class="float-right text-decoration-none border mb-5 text-danger"
+                class="float-right text-decoration-none mb-5 text-danger"
                 >Forgot Password</a
               >
 
@@ -54,13 +53,13 @@
                 height="50"
                 type="submit"
                 block
-                >Submit</v-btn
+                >Login</v-btn
               >
 
               <span class="text-center">
                 <h6>
                   Don't have any Account?
-                  <button @click="sendDataToParent">Send Data to Parent</button>
+                  <button @click="sendDataToParent" class="text-danger">Register Now</button>
                 </h6>
               </span>
             </v-form>
