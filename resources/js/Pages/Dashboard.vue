@@ -5,7 +5,7 @@
 
     <v-main>
         <h5 class="text-center mt-5">Welcome {{ $page.props.auth.user.firstName }}</h5>
-        <DataTable/>
+        <DataTable :users="users"/>
     </v-main>
   </v-app>
 </template>

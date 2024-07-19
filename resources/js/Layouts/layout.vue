@@ -9,7 +9,7 @@
             Web Development
         </v-app-bar-title>
         <div v-if="$page.props.auth.user">
-            <Link :href="route('logout')" method="post" class="nav-link text-white me-5"> Logout</Link>
+            <Link :href="route('logout')" method="post" as="button" type="button" class="nav-link text-white me-5"> Logout</Link>
         </div>
         <div v-else>
             <Link :href="route('login')" class="nav-link text-white"> Login</Link>

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
+use Inertia\Inertia;
 
 class AuthController extends Controller
 {
@@ -55,5 +57,19 @@ class AuthController extends Controller
         $request->session()->regenerateToken();
 
         return redirect()->route('login');
+    }
+
+public function editUser($id){
+    $user = User::find($id);
+
+    return Inertia::render('edit', ['user' => $user]);
+}
+
+
+    public function deleteUser(User $user)
+    {
+    //    $user = User::findOrFail($id);
+       $user->delete();
+       return Redirect::route('dashboard');
     }
 }
