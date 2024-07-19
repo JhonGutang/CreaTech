@@ -1,7 +1,8 @@
 <template>
-    <v-container class="w-75 h-75 my-auto">
-      <v-row class="h-100 customRounded">
-        <v-col cols="6" class="h-100 loginGreeting">
+  <Head :title="$page.component"/>
+    <v-container class="w-75 customHorizontalAlign">
+      <v-row class="customRounded">
+        <v-col cols="6" class=" loginGreeting">
           <v-row class="d-flex flex-column justify-center h-100">
             <v-col class="imgContainer d-flex justify-content-center pt-5">
               <img
@@ -21,26 +22,27 @@
         <v-col class="customBorder">
           <v-sheet class="mx-auto pt-15" width="400" height="450">
             <div class="text-h4 mb-5">Login</div>
-            <v-form fast-fail @submit.prevent class="h-100">
+            <v-form @submit.prevent="login" class="h-100">
+              <!-- First Name -->
               <v-text-field
-                v-model="username"
-                :rules="usernameRules"
-                label="Username"
-                input-class="textFieldPaddingLeft"
-              ></v-text-field>
+                  class="fields"
+                  v-model="form.email"
+                  label="Email"
+                  required
+                  type="email"
+                ></v-text-field>
+                <small class="customRequired">{{ form.errors.email }}</small>
 
-              
-              <v-text-field
-                v-model="password"
-                :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
-                :rules="[rules.required, rules.min]"
-                :type="showPassword ? 'text' : 'password'"
-                hint="At least 8 characters"
-                label="Password"
-                name="testPassword"
-                counter
-                @click:append="showPassword = !showPassword"
-              ></v-text-field>
+
+                <!-- Password -->
+                <v-text-field
+                  class="fields"
+                  v-model="form.password"
+                  label="Password"
+                  required
+                  type="password"
+                ></v-text-field>
+                <small class="customRequired">{{ form.errors.password }}</small>
 
               <a
                 href=""
@@ -59,7 +61,7 @@
               <span class="text-center">
                 <h6>
                   Don't have any Account?
-                  <button @click="sendDataToParent" class="text-danger">Register Now</button>
+                  <Link :href="route('register')" class="text-danger text-decoration-none">Register Now</Link>
                 </h6>
               </span>
             </v-form>
@@ -69,32 +71,30 @@
     </v-container>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      username: '',
-      password: '',
-      usernameRules: [v => !!v || 'First name is required'],
-      rules: {
-        required: value => !!value || 'Required.',
-        min: v => (v && v.length >= 8) || 'Min 8 characters',
-      },
-      showPassword: false,
-    };
-  },
-  methods: {
-    sendDataToParent() {
-      const dataToSend = true;
-      this.$emit("child-event", dataToSend);
-    },
-  },
-};
+<script setup>
+import { useForm, Head } from '@inertiajs/vue3'
+
+const form = useForm({
+  email : null,
+  password : null
+})
+
+
+function login() {
+  form.post(route('login'), {
+    onError: () => form.reset("password"),
+  });
+  console.log(form);
+}
 </script>
 
 <style scoped>
 .container {
   border: 3px solid red;
+}
+
+.customHorizontalAlign {
+  margin:100px auto ;
 }
 .loginGreeting {
   background-color: #dc3545;
@@ -120,4 +120,5 @@ export default {
 .textFieldPaddingLeft {
   padding-left: 30px;
 }
+
 </style>

@@ -1,6 +1,7 @@
 <template>
   <v-app>
-    <v-container class="w-75 h-75 my-auto">
+    <Head :title="$page.component" />
+    <v-container class="w-75 h-75 customHorizontalAlign">
       <v-row class="h-100 customRounded">
         <v-col cols="6" class="h-100 loginGreeting">
           <v-row class="d-flex flex-column justify-center h-100">
@@ -22,8 +23,8 @@
         <v-col class="customBorder">
           <v-sheet class="mx-auto pt-15" width="400" height="450">
             <div class="text-h4 mb-5">Register</div>
-            <v-form @submit.prevent="registerUser" class="h-100">
-              <v-card class="overflow-auto px-2" height="300">
+            <v-form @submit.prevent="register" class="h-100">
+              <v-card class="overflow-auto px-2" height="250">
                 <!-- First Name -->
                 <v-text-field
                   class="fields"
@@ -31,12 +32,14 @@
                   label="First Name"
                   required
                 >
-              </v-text-field>
-              <small class="customRequired">{{ form.errors.firstName }}</small>
+                </v-text-field>
+                <small class="customRequired">{{
+                  form.errors.firstName
+                }}</small>
 
                 <!-- Last Name -->
                 <v-text-field
-                class="fields"
+                  class="fields"
                   v-model="form.lastName"
                   label="Last Name"
                   required
@@ -45,7 +48,7 @@
 
                 <!-- Email -->
                 <v-text-field
-                class="fields"
+                  class="fields"
                   v-model="form.email"
                   label="Email"
                   required
@@ -55,7 +58,7 @@
 
                 <!-- Password -->
                 <v-text-field
-                class="fields"
+                  class="fields"
                   v-model="form.password"
                   label="Password"
                   required
@@ -64,7 +67,7 @@
                 <small class="customRequired">{{ form.errors.password }}</small>
 
                 <v-text-field
-                class="fields"
+                  class="fields"
                   v-model="form.password_confirmation"
                   label="Confirm Password"
                   required
@@ -87,7 +90,9 @@
                 <span>
                   <h6>
                     Already have an account?
-                  <button @click="sendDataToParent" class="text-danger">Login Now</button>
+                    <Link :href="route('login')" class="text-danger text-decoration-none">
+                      Login Now
+                    </Link>
                   </h6></span
                 >
               </div>
@@ -100,11 +105,8 @@
 </template>
 
 <script setup>
-import { useForm } from "@inertiajs/vue3";
-import { defineEmits } from 'vue';
 
-const emit = defineEmits(['child-event']);
-
+import { useForm, Head } from "@inertiajs/vue3";
 
 const form = useForm({
   firstName: null,
@@ -114,22 +116,21 @@ const form = useForm({
   password_confirmation: null,
 });
 
-function sendDataToParent() {
-  const dataToSend = false;
-  emit("child-event", dataToSend);
-}
 
-function registerUser() {
-  form.post("/auth", {
-    onError: () => form.reset("password", "password_confirmation")
+function register() {
+  form.post("/register", {
+    onError: () => form.reset("password", "password_confirmation"),
   });
-  console.log(form)
+  console.log(form);
 }
 </script>
 
 <style scoped>
 .container {
   border: 3px solid red;
+}
+.customHorizontalAlign {
+  margin:100px auto ;
 }
 .loginGreeting {
   background-color: #dc3545;
@@ -159,7 +160,7 @@ function registerUser() {
   position: relative;
   top: -20px;
   color: red;
-} 
+}
 
 .fields:not(:first) {
   position: relative;

@@ -8,7 +8,12 @@ Route::get("/", function () {
     return Inertia::render("Home");
 })->name("home");
 
-Route::inertia('/auth', 'Auth')->name('auth');
 
+Route::inertia('/login', 'Login')->name('login');
+Route::post('/login', [AuthController::class, 'login']);
 
-Route::post('/auth', [AuthController::class, 'register']);
+Route::inertia('/register', 'Register')->name('register');
+Route::post('/register', [AuthController::class, 'register']);
+
+Route::inertia('/dashboard', 'Dashboard')->name('dashboard');
+

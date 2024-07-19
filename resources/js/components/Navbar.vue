@@ -40,7 +40,7 @@
             <a class="nav-link text-white" href="#aboutUs">About Us</a>
           </li>
           <li class="nav-item">
-            <Link :href="route('auth')" class="nav-link text-white">Login </Link>
+            <Link :href="route('login')" class="nav-link text-white">Login </Link>
           </li>
         </ul>
       </div>
