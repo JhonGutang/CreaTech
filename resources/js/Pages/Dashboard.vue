@@ -1,21 +1,24 @@
 <template>
-    <v-app>
-        <Layout />
+  <Head :title="$page.component" />
+  <v-app>
+    <Layout />
 
-        <v-main>
-            <h1>
-                Test Dashboard
-            </h1>
-
-        </v-main>
-        
-    </v-app>
+    <v-main>
+        <h5 class="text-center mt-5">Welcome {{ $page.props.auth.user.firstName }}</h5>
+        <DataTable/>
+    </v-main>
+  </v-app>
 </template>
 
 <script setup>
-import Layout from '../Layouts/layout.vue'
+import { Head } from "@inertiajs/vue3";
+import DataTable from "../components/DataTable.vue";
+import Layout from "../Layouts/layout.vue";
+
+defineProps({
+    users : Object,
+})
 </script>
 
 <style>
-
 </style>

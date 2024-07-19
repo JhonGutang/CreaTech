@@ -3,17 +3,31 @@
 use App\Http\Controllers\AuthController;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
-
-Route::get("/", function () {
-    return Inertia::render("Home");
-})->name("home");
+use App\Models\User;
 
 
-Route::inertia('/login', 'Login')->name('login');
-Route::post('/login', [AuthController::class, 'login']);
 
-Route::inertia('/register', 'Register')->name('register');
-Route::post('/register', [AuthController::class, 'register']);
 
-Route::inertia('/dashboard', 'Dashboard')->name('dashboard');
+
+
+
+
+route::middleware('auth')->group(function(){
+
+    Route::inertia('/dashboard', 'Dashboard', ['users' => User::paginate(5)])->name('dashboard');
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+    
+});
+
+route::middleware('guest')->group(function (){
+
+    Route::inertia('/', 'Home')->name('home');
+
+    Route::inertia('/login', 'Login')->name('login');
+    Route::post('/login', [AuthController::class, 'login']);
+    
+    Route::inertia('/register', 'Register')->name('register');
+    Route::post('/register', [AuthController::class, 'register']);
+    
+});
 
