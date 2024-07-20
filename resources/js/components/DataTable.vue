@@ -1,3 +1,21 @@
+<script setup>
+import {router} from '@inertiajs/vue3' ;
+
+defineProps({
+  users: Object,
+});
+
+function deleteUser(id){
+  router.delete('/dashboard/'+ id)
+}
+
+function editUser(id){
+  router.get('/dashboard/' + id + '/edit')
+}
+</script>
+
+
+
 <template>
   <v-table height="400px" class="table table-bordered table-fused w-75 mx-auto mt-10">
     <thead>
@@ -23,25 +41,9 @@
   </v-table>
 </template>
 
-<script setup>
-import {router} from '@inertiajs/vue3' ;
-
-defineProps({
-  users: Object,
-});
-
-function deleteUser(id){
-  router.delete('/dashboard/'+ id)
-}
-
-function editUser(id){
-  router.get('/dashboard/' + id + '/edit')
-  alert(id)
-}
 
 
 
-</script>
 
 <style scoped>
 .customSize {

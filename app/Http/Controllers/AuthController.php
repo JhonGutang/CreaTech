@@ -10,6 +10,11 @@ use Inertia\Inertia;
 
 class AuthController extends Controller
 {
+
+
+
+
+
     public function register(Request $request)
     {
         sleep(1);
@@ -29,6 +34,10 @@ class AuthController extends Controller
         return redirect()->route('login');
     }
 
+
+
+
+
     public function login(Request $request)
     {
         $fields = $request->validate([
@@ -47,6 +56,11 @@ class AuthController extends Controller
         ])->onlyInput('email');
     }
 
+
+
+
+
+
     public function logout(Request $request)
     {
 
@@ -59,17 +73,36 @@ class AuthController extends Controller
         return redirect()->route('login');
     }
 
-public function editUser($id){
-    $user = User::find($id);
 
-    return Inertia::render('edit', ['user' => $user]);
-}
+    public function editUser(User $user)
+    {
+        return Inertia::render('Edit', ['user' => $user]);
+    }
+
+
+    public function updateUser(Request $request, User $user)
+    {
+        // validate 
+        $fields = $request->validate([
+            "firstName" => ["required", "max:255"],
+            "lastName" => ["required", "max:255"],
+            "email" => ["required", "email", "max:255"],
+
+        ]);
+        $user -> update($fields);
+        return Redirect::route('dashboard');
+    }
+
 
 
     public function deleteUser(User $user)
     {
-    //    $user = User::findOrFail($id);
-       $user->delete();
-       return Redirect::route('dashboard');
+        //    $user = User::findOrFail($id);
+        $user->delete();
+        return Redirect::route('dashboard');
     }
+
+
+
+
 }
