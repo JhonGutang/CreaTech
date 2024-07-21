@@ -16,9 +16,8 @@ route::middleware('auth')->group(function(){
     Route::delete('/dashboard/{user}', [AuthController::class, 'deleteUser']);
     
     
-    Route::get('/dashboard/{user}/edit', [AuthController::class, 'editUser']);
     Route::put('/dashboard/{user}', [AuthController::class, 'updateUser']);
-    route::inertia('/edit', 'Edit')->name('edit');
+    Route::get('/dashboard/{user}/edit', [AuthController::class, 'editUser']);
 });
 
 
