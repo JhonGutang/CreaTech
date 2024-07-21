@@ -87,6 +87,10 @@ function login() {
 }
 </script>
 
+
+
+
+
 <style scoped>
 .container {
   border: 3px solid red;
@@ -111,6 +115,13 @@ function login() {
   border: 1px solid #dc3545;
   border-radius: 5px;
 }
+
+.customRequired {
+  position: relative;
+  top: -20px;
+  color: red;
+}
+
 
 .customButton {
   background-color: #dc3545;
