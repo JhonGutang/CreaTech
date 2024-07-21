@@ -84,7 +84,6 @@ function login() {
   form.post(route('login'), {
     onError: () => form.reset("password"),
   });
-  console.log(form);
 }
 </script>
 

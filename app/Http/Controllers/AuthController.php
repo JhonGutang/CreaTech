@@ -20,12 +20,13 @@ class AuthController extends Controller
         sleep(1);
         // validate 
         $fields = $request->validate([
-            "firstName" => ["required", "max:255"],
-            "lastName" => ["required", "max:255"],
+            "userName" => ["required", "max:255"],
+            "fullName" => ["required", "max:255"],
             "email" => ["required", "email", "max:255", 'unique:users'],
             "password" => ["required", "confirmed"],
 
         ]);
+        
         //register
         $user = User::create($fields);
         //login
@@ -84,8 +85,8 @@ class AuthController extends Controller
     {
         // validate 
         $fields = $request->validate([
-            "firstName" => ["required", "max:255"],
-            "lastName" => ["required", "max:255"],
+            "userName" => ["required", "max:255"],
+            "fullName" => ["required", "max:255"],
             "email" => ["required", "email", "max:255"],
 
         ]);

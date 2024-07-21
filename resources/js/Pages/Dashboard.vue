@@ -4,7 +4,7 @@
     <Layout />
 
     <v-main>
-        <h5 class="text-center mt-5">Welcome {{ $page.props.auth.user.firstName }}</h5>
+        <h5 class="text-center mt-5">Welcome {{ $page.props.auth.user.fullName }}</h5>
         <DataTable :users="users"/>
     </v-main>
   </v-app>
@@ -18,6 +18,9 @@ import Layout from "../Layouts/layout.vue";
 defineProps({
     users : Object,
 })
+
+
+
 </script>
 
 <style>

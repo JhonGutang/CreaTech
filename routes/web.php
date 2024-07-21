@@ -12,10 +12,10 @@ use App\Models\User;
 route::middleware('auth')->group(function(){
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
     
-    Route::inertia('/dashboard', 'Dashboard', ['users' => User::paginate(5)])->name('dashboard');
+    Route::inertia('/dashboard', 'Dashboard', ['users' => User::paginate(7)])->name('dashboard');
     Route::delete('/dashboard/{user}', [AuthController::class, 'deleteUser']);
-
-
+    
+    
     Route::get('/dashboard/{user}/edit', [AuthController::class, 'editUser']);
     Route::put('/dashboard/{user}', [AuthController::class, 'updateUser']);
     route::inertia('/edit', 'Edit')->name('edit');

@@ -17,23 +17,27 @@ function editUser(id){
 
 
 <template>
-  <v-table height="400px" class="table table-bordered table-fused w-75 mx-auto mt-10">
+  <v-table height="550px" class=" w-75 mx-auto mt-10">
     <thead>
       <tr>
-        <th class="text-left">Name</th>
-        <th class="text-left">Email</th>
-        <th class="text-left">Edit</th>
-        <th class="text-left">Delete</th>
+        <th class="text-left text-white">Id</th>
+        <th class="text-left text-white">Username</th>
+        <th class="text-left text-white">Name</th>
+        <th class="text-left text-white">Email</th>
+        <th class="text-left text-white">Edit</th>
+        <th class="text-left text-white">Delete</th>
       </tr>
     </thead>
     <tbody>
-      <tr v-for="user in users.data" :key="user.id" class="customTr">
-        <td>{{ user.firstName }}</td>
+      <tr v-for="user in users.data" :key="user.id">
+        <td>{{ user.id }}</td>
+        <td>{{ user.userName }}</td>
+        <td>{{ user.fullName }}</td>
         <td>{{ user.email }}</td>
         <td><button @click.prevent="editUser(user.id)">...</button></td>
         <td>
           <button @click.prevent="deleteUser(user.id)">
-            <i class="bi bi-trash" color="danger"></i>
+            <i class="bi bi-trash"></i>
           </button>
         </td>
       </tr>
@@ -46,27 +50,23 @@ function editUser(id){
 
 
 <style scoped>
-.customSize {
-  border: 5px solid black;
-  border-radius: 20px;
-  /* width: 75%; */
-  border-collapse: collapse !important;
-}
-.table-fused {
-    border-collapse: collapse; /* Collapse borders */
+
+v-table, th, td {
+  width: 200px;
+  border: 1px solid black;
+  font-size: 17px;
+  text-align: left;
 }
 
-.table-fused td,
-.table-fused th {
-    border: none; /* Remove borders */
-}
-.table-fused th,
-.table-fused td {
-    padding: 8px; /* Adjust padding as needed */
-    text-align: left; /* Align text as needed */
+thead > tr {
+  background-color: #dc3545;
 }
 
-.customTr {
-  border: 2px solid black !important;
+th, td {
+  padding: 15px !important;
+}
+
+i {
+  color: red !important;
 }
 </style>
