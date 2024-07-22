@@ -74,11 +74,6 @@ class AuthController extends Controller
         return redirect()->route('login');
     }
 
-<<<<<<< HEAD
-public function editUser($id){
-    return $id;
-}
-=======
 
     public function editUser(User $user)
     {
@@ -99,7 +94,6 @@ public function editUser($id){
         return Redirect::route('dashboard');
     }
 
->>>>>>> 5deed8ec4c0fcab9209252ce0f342b00f5bfb46d
 
 
     public function deleteUser(User $user)
