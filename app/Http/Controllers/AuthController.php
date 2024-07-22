@@ -60,9 +60,7 @@ class AuthController extends Controller
     }
 
 public function editUser($id){
-    $user = User::find($id);
-
-    return Inertia::render('edit', ['user' => $user]);
+    return $id;
 }
 
 
