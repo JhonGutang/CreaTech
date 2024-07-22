@@ -8,8 +8,8 @@ const props = defineProps({
 });
 
 const form = useForm ({
-  userName: props.user.userName,
-  fullName: props.user.fullName,
+  username: props.user.username,
+  fullname: props.user.fullname,
   email: props.user.email
 })
 
@@ -25,7 +25,7 @@ function editForm(id) {
 <template>
   <v-app>
     <Head :title="$page.component" />
-    <v-container class="w-75 h-75 customHorizontalAlign">
+    <v-container class="w-75 customHorizontalAlign">
       <v-row class="h-100 customRounded">
         <v-col cols="6" class="h-100 loginGreeting">
           <v-row class="d-flex flex-column justify-center h-100">
@@ -51,23 +51,23 @@ function editForm(id) {
                 <!-- User Name -->
                 <v-text-field
                   class="fields"
-                  v-model="form.userName"
+                  v-model="form.username"
                   label="Username"
                   required
                 >
                 </v-text-field>
                 <small class="customRequired">{{
-                  form.errors.userName
+                  form.errors.username
                 }}</small>
 
                 <!-- Last Name -->
                 <v-text-field
                   class="fields"
-                  v-model="form.fullName"
+                  v-model="form.fullname"
                   label="Full Name"
                   required
                 ></v-text-field>
-                <small class="customRequired">{{ form.errors.fullName }}</small>
+                <small class="customRequired">{{ form.errors.fullname }}</small>
 
                 <!-- Email -->
                 <v-text-field
@@ -121,10 +121,13 @@ function editForm(id) {
 }
 .customHorizontalAlign {
   margin:100px auto ;
+  height: 560px !important;
 }
 .loginGreeting {
   background-color: #dc3545;
 }
+
+
 .customBorder {
   border: 8px solid #dc3545;
 }

@@ -30,8 +30,8 @@ function editUser(id) {
     <tbody>
       <tr v-for="user in users.data" :key="user.id">
         <td>{{ user.id }}</td>
-        <td class="text-capitalize">{{ user.userName }}</td>
-        <td class="text-capitalize">{{ user.fullName }}</td>
+        <td class="text-capitalize">{{ user.username }}</td>
+        <td class="text-capitalize">{{ user.fullname }}</td>
         <td>{{ user.email }}</td>
         <td>
           <button @click.prevent="editUser(user.id)" class="mx-5">

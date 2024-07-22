@@ -15,13 +15,13 @@ class AuthController extends Controller
 
 
 
-    public function register(Request $request)
+    public function registerUser(Request $request)
     {
         sleep(1);
         // validate 
         $fields = $request->validate([
-            "userName" => ["required", "max:255"],
-            "fullName" => ["required", "max:255"],
+            "username" => ["required", "max:255"],
+            "fullname" => ["required", "max:255"],
             "email" => ["required", "email", "max:255", 'unique:users'],
             "password" => ["required", "confirmed"],
 
@@ -32,14 +32,14 @@ class AuthController extends Controller
         //login
         Auth::login($user);
         //redirect
-        return redirect()->route('login');
+        return redirect()->route('dashboard')->with('greet', 'Welcome to Laravel Inertia Vue App');
     }
 
 
 
 
 
-    public function login(Request $request)
+    public function loginUser(Request $request)
     {
         $fields = $request->validate([
             'email' => ['required', 'email'],
@@ -62,7 +62,7 @@ class AuthController extends Controller
 
 
 
-    public function logout(Request $request)
+    public function logoutUser(Request $request)
     {
 
         Auth::logout();
@@ -85,8 +85,8 @@ class AuthController extends Controller
     {
         // validate 
         $fields = $request->validate([
-            "userName" => ["required", "max:255"],
-            "fullName" => ["required", "max:255"],
+            "username" => ["required", "max:255"],
+            "fullname" => ["required", "max:255"],
             "email" => ["required", "email", "max:255"],
 
         ]);
@@ -100,7 +100,6 @@ class AuthController extends Controller
     {
         //    $user = User::findOrFail($id);
         $user->delete();
-        return Redirect::route('dashboard');
     }
 
 

@@ -2,7 +2,6 @@
   <Head :title="$page.component" />
   <v-app>
     <Layout />
-
     <v-main>
         <DataTable :users="users"/>
     </v-main>

@@ -3,8 +3,8 @@
 import { useForm, Head } from "@inertiajs/vue3";
 
 const form = useForm({
-  userName: null,
-  fullName: null,
+  username: null,
+  fullname: null,
   email: null,
   password: null,
   password_confirmation: null,
@@ -52,23 +52,23 @@ function register() {
                 <!-- User Name -->
                 <v-text-field
                   class="fields"
-                  v-model="form.userName"
+                  v-model="form.username"
                   label="Username"
                   required
                 >
                 </v-text-field>
                 <small class="customRequired">{{
-                  form.errors.userName
+                  form.errors.username
                 }}</small>
 
                 <!-- Last Name -->
                 <v-text-field
                   class="fields"
-                  v-model="form.fullName"
+                  v-model="form.fullname"
                   label="Full Name"
                   required
                 ></v-text-field>
-                <small class="customRequired">{{ form.errors.fullName }}</small>
+                <small class="customRequired">{{ form.errors.fullname }}</small>
 
                 <!-- Email -->
                 <v-text-field
