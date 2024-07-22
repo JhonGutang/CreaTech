@@ -1,41 +1,159 @@
-<template>
-    <div>
-      <h2>Edit User</h2>
-      <form @submit.prevent="editForm">
-        <div class="form-group">
-          <label for="firstName">First Name</label>
-          <input type="text" class="form-control" id="firstName" v-model="form.firstName" required>
-        </div>
-        <div class="form-group">
-          <label for="lastName">Last Name</label>
-          <input type="text" class="form-control" id="lastName" v-model="form.lastName" required>
-        </div>
-        <div class="form-group">
-          <label for="email">Email address</label>
-          <input type="email" class="form-control" id="email" v-model="form.email" required>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
-    </div>
-  </template>
-
-
 <script setup>
-import {useForm} from '@inertiajs/vue3'
-import { defineProps } from 'vue';
+import {useForm, Head, router} from '@inertiajs/vue3'
+
 
 const props = defineProps({
   errors: Object,
-
+  user: Object,
 });
 
 const form = useForm ({
-  firstName: null,
-  lastName: null,
-  email: null
+  userName: props.user.userName,
+  fullName: props.user.fullName,
+  email: props.user.email
 })
+
+function editForm(id) {
+  router.put('/dashboard/' + id, form)
+
+}
+
 </script>
 
+
+
+<template>
+  <v-app>
+    <Head :title="$page.component" />
+    <v-container class="w-75 h-75 customHorizontalAlign">
+      <v-row class="h-100 customRounded">
+        <v-col cols="6" class="h-100 loginGreeting">
+          <v-row class="d-flex flex-column justify-center h-100">
+            <v-col class="imgContainer d-flex justify-content-center pt-5">
+              <img
+                src="../../../public/img/hero2.png"
+                alt=""
+                srcset=""
+                class="mx-auto"
+              />
+            </v-col>
+            <v-col>
+              <div class="text-h5 text-light text-center">
+                Connecting you securely to what matters most."
+              </div>
+            </v-col>
+          </v-row>
+        </v-col>
+        <v-col class="customBorder">
+          <v-sheet class="mx-auto pt-15" width="400" height="450">
+            <div class="text-h4 mb-5">Edit Info</div>
+            <v-form @submit.prevent="editForm(user.id)" class="h-100">
+                <!-- User Name -->
+                <v-text-field
+                  class="fields"
+                  v-model="form.userName"
+                  label="Username"
+                  required
+                >
+                </v-text-field>
+                <small class="customRequired">{{
+                  form.errors.userName
+                }}</small>
+
+                <!-- Last Name -->
+                <v-text-field
+                  class="fields"
+                  v-model="form.fullName"
+                  label="Full Name"
+                  required
+                ></v-text-field>
+                <small class="customRequired">{{ form.errors.fullName }}</small>
+
+                <!-- Email -->
+                <v-text-field
+                  class="fields"
+                  v-model="form.email"
+                  label="Email"
+                  required
+                  type="email"
+                ></v-text-field>
+                <small class="customRequired">{{ form.errors.email }}</small>
+
+              <!-- Submit Button -->
+              <v-btn
+                class="mt-3 mb-2 text-light"
+                color="success"
+                height="50"
+                type="submit"
+                block
+              >
+                Save Changes
+              </v-btn>
+
+              <v-btn
+                class="mt-3 mb-2 text-light customCancelButton"
+                height="50"
+                block
+                :href="route('dashboard')"
+              >
+                Cancel Changes
+              </v-btn>
+              
+              
+            </v-form>
+          </v-sheet>
+        </v-col>
+      </v-row>
+    </v-container>
+  </v-app>
+</template>
+
+
+
+
+
+
+
+
 <style scoped>
-/* Add custom styles here if needed */
+.container {
+  border: 3px solid red;
+}
+.customHorizontalAlign {
+  margin:100px auto ;
+}
+.loginGreeting {
+  background-color: #dc3545;
+}
+.customBorder {
+  border: 8px solid #dc3545;
+}
+
+.imgContainer img {
+  height: 300px;
+}
+
+.customRounded {
+  border: 1px solid #dc3545;
+  border-radius: 5px;
+}
+
+.customCancelButton {
+  background-color: #dc3545;
+}
+
+.textFieldPaddingLeft {
+  padding-left: 30px;
+}
+
+.customRequired {
+  position: relative;
+  top: -20px;
+  color: red;
+}
+
+.fields:not(:first) {
+  position: relative;
+  margin-top: -20px;
+}
 </style>

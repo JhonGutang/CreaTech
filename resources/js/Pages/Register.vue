@@ -1,3 +1,27 @@
+<script setup>
+
+import { useForm, Head } from "@inertiajs/vue3";
+
+const form = useForm({
+  userName: null,
+  fullName: null,
+  email: null,
+  password: null,
+  password_confirmation: null,
+});
+
+
+function register() {
+  form.post("/register", {
+    onError: () => form.reset("password", "password_confirmation"),
+  });
+  console.log(form);
+}
+</script>
+
+
+
+
 <template>
   <v-app>
     <Head :title="$page.component" />
@@ -25,26 +49,26 @@
             <div class="text-h4 mb-5">Register</div>
             <v-form @submit.prevent="register" class="h-100">
               <v-card class="overflow-auto px-2" height="250">
-                <!-- First Name -->
+                <!-- User Name -->
                 <v-text-field
                   class="fields"
-                  v-model="form.firstName"
-                  label="First Name"
+                  v-model="form.userName"
+                  label="Username"
                   required
                 >
                 </v-text-field>
                 <small class="customRequired">{{
-                  form.errors.firstName
+                  form.errors.userName
                 }}</small>
 
                 <!-- Last Name -->
                 <v-text-field
                   class="fields"
-                  v-model="form.lastName"
-                  label="Last Name"
+                  v-model="form.fullName"
+                  label="Full Name"
                   required
                 ></v-text-field>
-                <small class="customRequired">{{ form.errors.lastName }}</small>
+                <small class="customRequired">{{ form.errors.fullName }}</small>
 
                 <!-- Email -->
                 <v-text-field
@@ -55,6 +79,8 @@
                   type="email"
                 ></v-text-field>
                 <small class="customRequired">{{ form.errors.email }}</small>
+
+        
 
                 <!-- Password -->
                 <v-text-field
@@ -104,26 +130,10 @@
   </v-app>
 </template>
 
-<script setup>
-
-import { useForm, Head } from "@inertiajs/vue3";
-
-const form = useForm({
-  firstName: null,
-  lastName: null,
-  email: null,
-  password: null,
-  password_confirmation: null,
-});
 
 
-function register() {
-  form.post("/register", {
-    onError: () => form.reset("password", "password_confirmation"),
-  });
-  console.log(form);
-}
-</script>
+
+
 
 <style scoped>
 .container {

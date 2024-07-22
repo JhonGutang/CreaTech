@@ -10,17 +10,23 @@ use Inertia\Inertia;
 
 class AuthController extends Controller
 {
+
+
+
+
+
     public function register(Request $request)
     {
         sleep(1);
         // validate 
         $fields = $request->validate([
-            "firstName" => ["required", "max:255"],
-            "lastName" => ["required", "max:255"],
+            "userName" => ["required", "max:255"],
+            "fullName" => ["required", "max:255"],
             "email" => ["required", "email", "max:255", 'unique:users'],
             "password" => ["required", "confirmed"],
 
         ]);
+        
         //register
         $user = User::create($fields);
         //login
@@ -28,6 +34,10 @@ class AuthController extends Controller
         //redirect
         return redirect()->route('login');
     }
+
+
+
+
 
     public function login(Request $request)
     {
@@ -47,6 +57,11 @@ class AuthController extends Controller
         ])->onlyInput('email');
     }
 
+
+
+
+
+
     public function logout(Request $request)
     {
 
@@ -59,15 +74,42 @@ class AuthController extends Controller
         return redirect()->route('login');
     }
 
+<<<<<<< HEAD
 public function editUser($id){
     return $id;
 }
+=======
+
+    public function editUser(User $user)
+    {
+        return Inertia::render('Edit', ['user' => $user]);
+    }
+
+
+    public function updateUser(Request $request, User $user)
+    {
+        // validate 
+        $fields = $request->validate([
+            "userName" => ["required", "max:255"],
+            "fullName" => ["required", "max:255"],
+            "email" => ["required", "email", "max:255"],
+
+        ]);
+        $user -> update($fields);
+        return Redirect::route('dashboard');
+    }
+
+>>>>>>> 5deed8ec4c0fcab9209252ce0f342b00f5bfb46d
 
 
     public function deleteUser(User $user)
     {
-    //    $user = User::findOrFail($id);
-       $user->delete();
-       return Redirect::route('dashboard');
+        //    $user = User::findOrFail($id);
+        $user->delete();
+        return Redirect::route('dashboard');
     }
+
+
+
+
 }

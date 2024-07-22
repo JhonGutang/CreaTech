@@ -84,9 +84,12 @@ function login() {
   form.post(route('login'), {
     onError: () => form.reset("password"),
   });
-  console.log(form);
 }
 </script>
+
+
+
+
 
 <style scoped>
 .container {
@@ -112,6 +115,13 @@ function login() {
   border: 1px solid #dc3545;
   border-radius: 5px;
 }
+
+.customRequired {
+  position: relative;
+  top: -20px;
+  color: red;
+}
+
 
 .customButton {
   background-color: #dc3545;
