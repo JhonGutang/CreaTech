@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
@@ -10,7 +11,7 @@ use App\Models\User;
 
 
 route::middleware('auth')->group(function(){
-    Route::post('/logout', [AuthController::class, 'logoutUser'])->name('logout');
+    Route::post('/logout', [UserController::class, 'logoutUser'])->name('logout');
     
     Route::inertia('/dashboard', 'Dashboard', ['users' => User::paginate(7)])->name('dashboard');
     Route::delete('/dashboard/{user}', [AuthController::class, 'deleteUser']);
@@ -23,21 +24,21 @@ route::middleware('auth')->group(function(){
 
 
 
-// route::middleware('guest')->group(function (){
+route::middleware('guest')->group(function (){
     // Home
     Route::inertia('/', 'Home')->name('home');
     
     
     // Login
     Route::inertia('/login', 'Login')->name('login');
-    Route::post('/login', [AuthController::class, 'loginUser']);
+    Route::post('/login', [UserController::class, 'loginUser']);
     
     
     // Register
-    Route::post('/register', [AuthController::class, 'registerUser']);
+    Route::post('/register', [UserController::class, 'registerUser']);
     Route::inertia('/register', 'Register')->name('register');
     
-// });    
+});    
 
 
 
