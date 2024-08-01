@@ -2,21 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\ModifyInformation;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
-use App\Contracts\UserInterface;
 
 class AuthController extends Controller
 {   
 
-    public function editUser(User $user)
+    protected $modificationService;
+
+    public function __construct(ModifyInformation $modificationService)
     {
-        return Inertia::render('Edit', ['user' => $user]);
+        $this->modificationService = $modificationService;
     }
 
+
+    public function editUser(User $user)
+    {
+        return $this->modificationService->editUser($user);
+    }
 
     public function updateUser(Request $request, User $user)
     {
@@ -27,7 +34,7 @@ class AuthController extends Controller
             "email" => ["required", "email", "max:255"],
 
         ]);
-        $user -> update($fields);
+        $this->modificationService->updateUser($fields, $user);
         return Redirect::route('dashboard');
     }
 

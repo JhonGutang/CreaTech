@@ -16,17 +16,9 @@ class UserInfoModification implements ModifyInformation
     }
 
 
-    public function updateUser(Request $request, User $user)
+    public function updateUser(array $data, User $user)
     {
-        // validate 
-        $fields = $request->validate([
-            "username" => ["required", "max:255"],
-            "fullname" => ["required", "max:255"],
-            "email" => ["required", "email", "max:255"],
-
-        ]);
-        $user -> update($fields);
-        return Redirect::route('dashboard');
+        $user -> update($data);
     }
 
 
