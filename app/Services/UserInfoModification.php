@@ -1,17 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
-
-use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+namespace App\Services;
+use App\Contracts\ModifyInformation;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Http\Request;
 use Inertia\Inertia;
-use App\Contracts\UserInterface;
+use App\Models\User;
 
-class AuthController extends Controller
-{   
 
+class UserInfoModification implements ModifyInformation
+{
     public function editUser(User $user)
     {
         return Inertia::render('Edit', ['user' => $user]);
@@ -35,11 +33,7 @@ class AuthController extends Controller
 
     public function deleteUser(User $user)
     {
-        //    $user = User::findOrFail($id);
         $user->delete();
     }
-
-
-
 
 }
