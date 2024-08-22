@@ -5,7 +5,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 
 
-interface ModifyInformation
+interface ModifyUserInformation
 {
    public function editUser(User $user);
    public function updateUser(array $data, User $user);
